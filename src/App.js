@@ -8,6 +8,8 @@ import {
 } from '@material-ui/core';
 import Info from './info';
 import Map from './Map';
+import Table from './Table';
+import { sortData } from './Util';
 import './App.css';
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
   const [paises, setPaises] = useState([]);
   const [pais, setPais] = useState('Mundial');
   const [paisInfo, setPaisInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     fetch(URL_ALL)
@@ -35,6 +38,8 @@ function App() {
           name: pais.country, // nome completo vindo da API
           value: pais.countryInfo.iso2 // sigla do nome vindo da API
         })));
+        const sortedData = sortData(data);
+        setTableData(sortedData);
         setPaises(paises)
       });
     };
@@ -61,7 +66,7 @@ function App() {
         {/* Header */}
         {/* Titulo + Campo de Seleção dropdown */}
         <div className="app__header">
-          <h1>COVID-19</h1>
+        <h1>COVID-19 {paisInfo.country}</h1>
           <FormControl className="app__dropdwon">
             <Select
               variant="outlined"
@@ -95,6 +100,8 @@ function App() {
         <CardContent>
           {/* Tabela */}
           <h3>Casos Por Paises</h3>
+          <Table paises={tableData} />
+
           {/* Grafico */}
           <h3>Novos Casos no Mundo</h3>
         </CardContent>
