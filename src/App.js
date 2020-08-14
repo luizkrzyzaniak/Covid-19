@@ -10,6 +10,7 @@ import Info from './info';
 import Map from './Map';
 import Table from './Table';
 import { sortData } from './Util';
+import Grafico from './Grafico';
 import './App.css';
 
 function App() {
@@ -104,6 +105,7 @@ function App() {
 
           {/* Grafico */}
           <h3>Novos Casos no Mundo</h3>
+          <Grafico />
         </CardContent>
       </Card>      
     </div>
