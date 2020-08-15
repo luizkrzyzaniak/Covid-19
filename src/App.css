@@ -4,6 +4,8 @@
 
 body{
   background-color: #f5f6fa;
+  min-width: 100vh;
+  position: relative;
 }
 
 .App {

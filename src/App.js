@@ -12,6 +12,7 @@ import Table from './Table';
 import { sortData } from './Util';
 import Grafico from './Grafico';
 import './App.css';
+import Footer from './Footer';
 
 function App() {
   const URL_PAISES = "https://disease.sh/v3/covid-19/countries/"; // API utilizada
@@ -107,7 +108,8 @@ function App() {
           <h3>Novos Casos no Mundo</h3>
           <Grafico />
         </CardContent>
-      </Card>      
+      </Card>   
+      <Footer />   
     </div>
   );
 }
