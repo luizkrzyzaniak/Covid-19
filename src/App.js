@@ -6,6 +6,7 @@ import {
   Card,
   CardContent
 } from '@material-ui/core';
+import 'leaflet/dist/leaflet.css';
 import Info from './info';
 import Map from './Map';
 import Table from './Table';
@@ -22,6 +23,9 @@ function App() {
   const [pais, setPais] = useState('Mundial');
   const [paisInfo, setPaisInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796});
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapPaises, setMapPaises] = useState([]);
 
   useEffect(() => {
     fetch(URL_ALL)
@@ -42,6 +46,7 @@ function App() {
         })));
         const sortedData = sortData(data);
         setTableData(sortedData);
+        setMapPaises(data);
         setPaises(paises)
       });
     };
@@ -59,8 +64,11 @@ function App() {
     .then(data => {
       setPais(paisCodigo);
       setPaisInfo(data);
-    })
-  }
+
+      setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+      setMapZoom(4);
+    });
+  };
 
   return (
     <div className="App">
@@ -96,7 +104,10 @@ function App() {
         </div>
 
         {/* Mapa */}
-        <Map />
+        <Map 
+          paises={mapPaises}
+          center={mapCenter}
+          zoom={mapZoom}/>
       </div>
       <Card className="app__direito">
         <CardContent>
