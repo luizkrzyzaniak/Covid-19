@@ -100,11 +100,11 @@ function App() {
 
         <div className="app__stats">
           {/* Info Casos de Coronavirus */}
-          <Info onClick={e => setCasesType("cases")} titulo="Casos de Coronavirus" casos={prettyPrintStat(paisInfo.todayCases)} total={prettyPrintStat(paisInfo.cases)} />
+          <Info active={casesType === "cases"} onClick={e => setCasesType("cases")} titulo="Casos de Coronavirus" casos={prettyPrintStat(paisInfo.todayCases)} total={prettyPrintStat(paisInfo.cases)} />
           {/* Info Casos Recuperados */}
-          <Info onClick={e => setCasesType("recovered")} titulo="Recuperados" casos={prettyPrintStat(paisInfo.todayRecovered)} total={prettyPrintStat(paisInfo.recovered)} />
+          <Info active={casesType === "recovered"} onClick={e => setCasesType("recovered")} titulo="Recuperados" casos={prettyPrintStat(paisInfo.todayRecovered)} total={prettyPrintStat(paisInfo.recovered)} />
           {/* Info Mortes */}
-          <Info onClick={e => setCasesType("deaths")} titulo="Mortes" casos={prettyPrintStat(paisInfo.todayDeaths)} total={prettyPrintStat(paisInfo.deaths)} />
+          <Info active={casesType === "deaths"} onClick={e => setCasesType("deaths")} titulo="Mortes" casos={prettyPrintStat(paisInfo.todayDeaths)} total={prettyPrintStat(paisInfo.deaths)} />
         </div>
 
         {/* Mapa */}
@@ -121,7 +121,7 @@ function App() {
           <Table paises={tableData} />
 
           {/* Grafico */}
-          <h3>Novos Casos no Mundo</h3>
+          <h3>Novos no Mundo</h3>
           <Grafico casesType={casesType} />
         </CardContent>
       </Card>   

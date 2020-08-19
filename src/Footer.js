@@ -8,9 +8,7 @@ function Footer() {
             <p>
                 Desenvolvido por:
             </p>
-            <a>
              <img className="logoFooter" src={Logo} alt="Luiz Krzyzaniak"/>
-            </a>
         </div>
     )
 }

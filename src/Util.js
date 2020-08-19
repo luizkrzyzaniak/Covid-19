@@ -1,7 +1,6 @@
 import React from 'react';
 import numeral from 'numeral';
 import { Circle, Popup } from 'react-leaflet';
-import { popup } from 'leaflet';
 
 const casesTypeColors = {
     cases: {

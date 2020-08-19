@@ -6,6 +6,10 @@
     margin-right: 10px;
 }
 
+.infoBox--selected{
+    border-top: 10px solid #61b8d3;
+}
+
 .infoBox__casos{
     color: #cc1034;
     font-weight: 600;
@@ -13,9 +17,13 @@
     margin-bottom: 0.5rem;
 }
 
-.infoBox_total{
+.infoBox__total{
     color: #6c7574;
     font-weight: 700 !important;
     font-size: 0.8rem !important;
     margin-top: 15px !important;
+}
+
+.infoBox:hover{
+    background-color: #e7e4e4;
 }

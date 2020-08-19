@@ -77,7 +77,7 @@ function Grafico({ casesType="cases" }) {
             });
         };
         fetchData();
-    }, []);
+    });
         
 
 
