@@ -44,7 +44,7 @@ const options = {
     },
 };
 
-const criarChartData = (data, casesType='cases') => {
+const criarChartData = (data, casesType="cases") => {
     const chartData = [];
     let ultimoDataPoint;
 
@@ -72,7 +72,7 @@ function Grafico({ casesType="cases" }) {
                 return response.json();
             })
             .then((data) => {
-                let chartData = criarChartData(data, "cases");
+                let chartData = criarChartData(data, casesType);
                 setData(chartData);
             });
         };

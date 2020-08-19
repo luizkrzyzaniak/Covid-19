@@ -1,10 +1,10 @@
 .footerBase{
-    width: 100vw;
-    height: 50px;
     position: absolute;
+    top: 100%;
     bottom: 0;
     text-align: center;
     padding: 10px;
+    width: 90%;
 }
 
 .logoFooter{

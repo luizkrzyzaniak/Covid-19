@@ -10,7 +10,7 @@ import 'leaflet/dist/leaflet.css';
 import Info from './info';
 import Map from './Map';
 import Table from './Table';
-import { sortData } from './Util';
+import { sortData, prettyPrintStat } from './Util';
 import Grafico from './Grafico';
 import './App.css';
 import Footer from './Footer';
@@ -26,6 +26,7 @@ function App() {
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796});
   const [mapZoom, setMapZoom] = useState(3);
   const [mapPaises, setMapPaises] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     fetch(URL_ALL)
@@ -64,8 +65,11 @@ function App() {
     .then(data => {
       setPais(paisCodigo);
       setPaisInfo(data);
-
-      setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        if(paisCodigo === 'Mundial'){
+          setMapCenter([34.80746, -40.4796])
+        } else {
+          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        }
       setMapZoom(4);
     });
   };
@@ -96,15 +100,16 @@ function App() {
 
         <div className="app__stats">
           {/* Info Casos de Coronavirus */}
-          <Info titulo="Casos de Coronavirus" casos={paisInfo.todayCases} total={paisInfo.cases} />
+          <Info onClick={e => setCasesType("cases")} titulo="Casos de Coronavirus" casos={prettyPrintStat(paisInfo.todayCases)} total={prettyPrintStat(paisInfo.cases)} />
           {/* Info Casos Recuperados */}
-          <Info titulo="Recuperados" casos={paisInfo.todayRecovered} total={paisInfo.recovered} />
+          <Info onClick={e => setCasesType("recovered")} titulo="Recuperados" casos={prettyPrintStat(paisInfo.todayRecovered)} total={prettyPrintStat(paisInfo.recovered)} />
           {/* Info Mortes */}
-          <Info titulo="Mortes" casos={paisInfo.todayDeaths} total={paisInfo.deaths} />
+          <Info onClick={e => setCasesType("deaths")} titulo="Mortes" casos={prettyPrintStat(paisInfo.todayDeaths)} total={prettyPrintStat(paisInfo.deaths)} />
         </div>
 
         {/* Mapa */}
         <Map 
+          casesType={casesType}
           paises={mapPaises}
           center={mapCenter}
           zoom={mapZoom}/>
@@ -117,7 +122,7 @@ function App() {
 
           {/* Grafico */}
           <h3>Novos Casos no Mundo</h3>
-          <Grafico />
+          <Grafico casesType={casesType} />
         </CardContent>
       </Card>   
       <Footer />   

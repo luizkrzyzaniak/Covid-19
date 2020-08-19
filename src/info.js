@@ -1,9 +1,10 @@
-import React from 'react'
-import { Card, CardContent, Typography } from '@material-ui/core'
+import React from 'react';
+import { Card, CardContent, Typography } from '@material-ui/core';
+import './Info.css';
 
-function Info({titulo, casos, total}) {
+function Info({titulo, casos, total, ...props }) {
     return (
-        <Card className="infoBox">
+        <Card onClick={props.onClick} className="infoBox">
             <CardContent>
                 {/* Titulo */}
                 <Typography className="infoBox__titulo" color="textSecondary">
@@ -13,7 +14,7 @@ function Info({titulo, casos, total}) {
                 <h2 className="infoBox__casos" >{casos}</h2>
                 {/* Total */}
                 <Typography className="infoBox__total" color="textSecondary">
-                    {total} Total
+                    Total: {total}
                 </Typography>
             </CardContent>
         </Card>

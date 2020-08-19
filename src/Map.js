@@ -1,8 +1,9 @@
 import React from 'react';
 import { Map as LeafletMap, TileLayer } from 'react-leaflet';
+import { mostrarDataNoMapa } from './Util';
 import './Map.css';
 
-function Map({paises, center, zoom}) {
+function Map({paises, casesType, center, zoom}) {
     return (
         <div className="mapa">
             <LeafletMap center={center} zoom={zoom}> 
@@ -12,6 +13,7 @@ function Map({paises, center, zoom}) {
                     OpenStreetMap</a> contributors'
                     />
                     {/* Desenhar circulos na tela */}
+                    {mostrarDataNoMapa(paises, casesType)}
             </LeafletMap>
         </div>
     )
