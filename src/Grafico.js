@@ -61,7 +61,7 @@ const criarChartData = (data, casesType="cases") => {
     return chartData;
 };
 
-function Grafico({ casesType="cases" }) {
+function Grafico({ casesType="cases", ...props }) {
     const [data, setData] = useState({});
     const URL_LASTDAYS = "https://disease.sh/v3/covid-19/historical/all?lastdays=120";
 
@@ -82,7 +82,7 @@ function Grafico({ casesType="cases" }) {
 
 
     return (
-        <div>
+        <div className={props.className}>
             {data?.length > 0 && (
                 <Line 
                     options={options}
